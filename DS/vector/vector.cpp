@@ -35,4 +35,25 @@ void ds::vector::print()
     {
         std::cout << this->ptr[i] << " ";
     }
+    std::cout<<std::endl;
+}
+int ds::vector::get_front()
+{
+    return this->ptr[0];
+}
+int ds::vector::get_back()
+{
+    return this->ptr[this->size - 1];
+}
+void ds::vector::push_back(int value)
+{
+    int* temp=new int[this->size+1];
+    for (int i = 0; i < this->size; i++)
+    {
+        temp[i]=this->ptr[i];
+    }
+    temp[this->size++]=value;
+    std::swap(this->ptr,temp);
+    delete[] temp;
+    
 }

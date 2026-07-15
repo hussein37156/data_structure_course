@@ -14,5 +14,8 @@ namespace ds
         void set(int value, int index);
         void print();
         int find(int value);
+        int get_front();
+        int get_back();
+        void push_back(int value);
     };
 } // namespace ds

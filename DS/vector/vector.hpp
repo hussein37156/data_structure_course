@@ -6,6 +6,8 @@ namespace ds
     private:
         int size = 0;
         int *ptr = nullptr;
+        int capacity=30000;
+        void capacity_expand();
 
     public:
         vector(int size);

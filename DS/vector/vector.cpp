@@ -3,7 +3,8 @@
 ds::vector::vector(int size)
 {
     this->size = size;
-    this->ptr = new int[this->size];
+    this->capacity = this->size + 30000;
+    this->ptr = new int[this->capacity];
 }
 ds::vector::~vector()
 {
@@ -35,7 +36,7 @@ void ds::vector::print()
     {
         std::cout << this->ptr[i] << " ";
     }
-    std::cout<<std::endl;
+    std::cout << std::endl;
 }
 int ds::vector::get_front()
 {
@@ -47,13 +48,21 @@ int ds::vector::get_back()
 }
 void ds::vector::push_back(int value)
 {
-    int* temp=new int[this->size+1];
+    if (this->size == this->capacity)
+    {
+        this->capacity_expand();
+    }
+    this->ptr[this->size++] = value;
+}
+void ds::vector::capacity_expand()
+{
+    this->capacity *= 2;
+    int *temp = new int[this->capacity];
     for (int i = 0; i < this->size; i++)
     {
-        temp[i]=this->ptr[i];
+        temp[i] = this->ptr[i];
     }
-    temp[this->size++]=value;
-    std::swap(this->ptr,temp);
+
+    std::swap(this->ptr, temp);
     delete[] temp;
-    
 }

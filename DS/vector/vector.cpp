@@ -46,15 +46,7 @@ int ds::vector::get_back()
 {
     return this->ptr[this->size - 1];
 }
-void ds::vector::push_back(int value)
-{
-    if (this->size == this->capacity)
-    {
-        this->capacity_expand();
-    }
-    this->ptr[this->size++] = value;
-}
-void ds::vector::capacity_expand()
+void ds::vector::expand_capacity()
 {
     this->capacity *= 2;
     int *temp = new int[this->capacity];
@@ -65,4 +57,25 @@ void ds::vector::capacity_expand()
 
     std::swap(this->ptr, temp);
     delete[] temp;
+}
+void ds::vector::push_back(int value)
+{
+    if (this->size == this->capacity)
+    {
+        this->expand_capacity();
+    }
+    this->ptr[this->size++] = value;
+}
+void ds::vector::insert(int index, int value)
+{
+    if (this->size == this->capacity)
+    {
+        this->expand_capacity();
+    }
+    for (int i = this->size - 1; i >= index; i--)
+    {
+        this->ptr[i + 1] = this->ptr[i];
+    }
+    this->ptr[index] = value;
+    this->size++;
 }

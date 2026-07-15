@@ -7,7 +7,7 @@ namespace ds
         int size = 0;
         int *ptr = nullptr;
         int capacity=30000;
-        void capacity_expand();
+        void expand_capacity();
 
     public:
         vector(int size);
@@ -19,5 +19,6 @@ namespace ds
         int get_front();
         int get_back();
         void push_back(int value);
+        void insert(int index, int value);
     };
 } // namespace ds

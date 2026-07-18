@@ -5,6 +5,7 @@ namespace ds
         int data;
         node* next;
         node(int data);
+        void print();
     };
     
 } // namespace ds
